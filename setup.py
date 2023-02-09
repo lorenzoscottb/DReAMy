@@ -1,17 +1,21 @@
 from setuptools import setup, find_packages, os
 
-VERSION = '0.0.4'
+VERSION = '0.0.5'
 DESCRIPTION = 'DReAMy'
-LONG_DESCRIPTION = 'A package for Dream-Reports Annotation Methods with python.'
+
+# with open("README.md", 'r') as f:
+#     LONG_DESCRIPTION = f.read()
 
 # Setting up
 setup(
     name="dreamy",
     version=VERSION,
+    license="Apache-2.0",
+    url="https://github.com/lorenzoscottb/DReAMy",
     author="lorenzoscottb (Lorenzo Bertolini)",
     author_email="<lorenzoscottb@gmail.com>",
     description=DESCRIPTION,
-    long_description=LONG_DESCRIPTION,
+    long_description="LONG_DESCRIPTION",
     packages=find_packages(),
     install_requires=["scikit-learn", "transformers[tokenizers,torch]", "tqdm", "pandas", "numpy", "datasets"],
     keywords=['python', 'NLP', 'dream'],
