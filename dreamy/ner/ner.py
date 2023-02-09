@@ -19,7 +19,7 @@ def get_CHAR(data, model_name, task, max_length=512, truncation=True, device="cp
         device=device,
     )
 
-    predictions = pipe(dreams_as_list)
+    predictions = pipe(data)
 
     return predictions
 
