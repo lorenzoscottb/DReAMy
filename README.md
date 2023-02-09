@@ -146,6 +146,7 @@ g = sns.scatterplot(
 )
 g.legend(loc='center left', title="DreamBank Series", bbox_to_anchor=(1, 0.5))
 ```
+![alt text](https://github.com/lorenzoscottb/DReAMy/blob/main/images/dreamy_example.png)
 
 ## In-Progress Development
 ### Topic-Modelling
