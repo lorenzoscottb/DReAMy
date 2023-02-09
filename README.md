@@ -50,7 +50,7 @@ max_length          = 512
 truncation          = True
 device              = "cpu"
 
-model_name, task = dreamy.emotion_classification.model_maps[
+model_name, task = dreamy.emotion_classification.emotion_model_maps[
     "{}-{}".format(classification_type, model_type)
 ]
 
@@ -102,10 +102,9 @@ max_length          = 512
 truncation          = True
 device              = "cpu"
 
-model_name, task = dreamy.emotion_classification.model_maps[
+model_name, task = dreamy.emotion_classification.emotion_model_maps[
     "{}-{}".format(classification_type, model_type)
 ]
-
 predictions = dreamy.generate_emotions(
     dream_as_list, 
     model_name, 
@@ -123,7 +122,35 @@ predictions
  {'summary_text': 'The dreamer experienced apprehension and confusion . the individual male known teenager experienced happiness. the group joint uncertian teenager experienced sadness.'}]
 ```
 ## NER
+An important aspect of each dream report is the character that appear in it. In thi notebook, we will see how to use `dreamy` to extract character appearing in each report. As always, character are defined with respect to the Hall & Van de Castle system. CHAR are in this case spelled out, and do not/should not include the dreamer themself. Please note that CHAR data used in training is not linked to any specii feature. In other words, prediction should not be interpreted in any other way other than their presence. 
+```py 
+classification_type = "full"
+model_type          = "base-en"
+device              = "cpu"
+max_length          = 512
+truncation          = True
+device              = "cpu"
 
+
+model_name, task = dreamy.ner_model_maps[
+    "{}-{}".format(classification_type, model_type)
+]
+
+predictions = dreamy.get_CHAR(
+    dream_as_list, 
+    model_name, 
+    task,
+    max_length=max_length, 
+    truncation=truncation, 
+    device=device,
+)
+
+predictions
+```
+```
+[{'summary_text': 'individual male known adult; original form male uncertian adult; changed form female reative adult; new form male occupational adult; change in form male known child;'},
+ {'summary_text': 'Ich stehe in einer Halle vor ziemlich vielen Leuten und habe einen Vortrag gehalten. Ich sage es in englischer Sprache, aber ich spreche in deutscher Sprache.'}]
+```
 ## Encoding, reduction and visualisation
 You can also use DReAMy to ealy extract, reduce and visualise encodings/embeddings of reports. In literally 2 lines of code. Note that the model used in this case a pre-trained `bert-base-cased`. You can change to model to other 🤗 models, but, at the current state, it might clash with the source code. 
 
