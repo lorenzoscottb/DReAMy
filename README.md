@@ -124,13 +124,17 @@ predictions
 ## NER
 
 ## Encoding, reduction and visualisation
-You can also use DReAMy to ealy extract, reduce and visualise encodings/embeddings of reports. See the example below.
+You can also use DReAMy to ealy extract, reduce and visualise encodings/embeddings of reports. In literally 2 lines of code. Note that the model used in this case a pre-trained `bert-base-cased`. You can change to model to other 🤗 models, but, at the current state, it might clash with the source code. 
+
 ```py
 report_encodings = dreamy.get_encodings(dream_as_list)
 X, Y = dreamy.reduce_space(report_encodings, method="pca") # choose between pca/t-sne
 
 # Update your original dataframe with cohordinates and plot
 dream_sample["DR_X"], dream_sample["DR_Y"] = X, Y
+```
+Then use your favourite visualisation library to explore the results.
+```py
 
 import seaborn as sns
 
@@ -145,6 +149,7 @@ g = sns.scatterplot(
     palette="Set2"
 )
 g.legend(loc='center left', title="DreamBank Series", bbox_to_anchor=(1, 0.5))
+
 ```
 ![alt text](https://github.com/lorenzoscottb/DReAMy/blob/main/images/dreamy_example.png)
 
