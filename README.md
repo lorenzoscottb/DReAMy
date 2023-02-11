@@ -1,10 +1,11 @@
 ![alt text](https://github.com/lorenzoscottb/DReAMy/blob/main/images/dreamy_full_logo.png)
 
 
-DReAMy is a python library built around pytorch and Hugging Face's 🤗 [`transformers`](https://huggingface.co/docs/transformers/index) to automatically analyse (for now) textual reports of dream. At the moment, annotations are based on the [Hall & Van de Castle](https://link.springer.com/chapter/10.1007/978-1-4899-0298-6_2) emotions framewokr, but we are looking forward to expand our set applications. 
+DReAMy is a python library using machine learning and state-of-the-art NLP methods to explore, analyse and annotate dream-reports. The library is mainly built around pytorch and Hugging Face's 🤗 [`transformers`](https://huggingface.co/docs/transformers/index), and makes use of large language models (LLMs) tuned to perform different dream-report-specific tasks, such as sentiment analysis and character recognition (NER). As of now, the input format is only textual and the annotation process is based on the [Hall & Van de Castle](https://link.springer.com/chapter/10.1007/978-1-4899-0298-6_2) framework. We are looking forward to expanding our set applications and annotation schemes, so please do get in touch if you wish to take part in the expansion of DReAMy!
 
 # Installation and usage
-DReAMy can be easly installed via pip! If you wish to play/query a set of DReAMy's model, you can do so in the [`dream`](https://huggingface.co/spaces/DReAMy-lib/dream) 🤗 Space.
+DReAMy can be easly installed via pip! If you wish to play/query a set of DReAMy's model, you can do so in the [`dream`](https://huggingface.co/spaces/DReAMy-lib/dream) 🤗 Space. Before starting, we do reccoment setting up a virtual envirment (`conda` or `venv`), using python 3.9. 
+
 ```
 pip install dreamy
 ```
