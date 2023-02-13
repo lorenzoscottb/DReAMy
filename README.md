@@ -10,7 +10,15 @@ DReAMy can be easly installed via pip! If you wish to play/query a set of DReAMy
 pip install dreamy
 ```
 
-# Current Feature
+# Current Features
+At the moment, DReAMy has four main features: 
+- Datasts, allowing to download and use two dream-report datasets from DreamBank.
+- Emotion Classification, allowing to easly classify lists of reports for HVDC emotions.
+- NER (or character annotation), that allow to extract relevant characters appearing in a given report. 
+- Encodigns: that easly collects and explores enbeddings of textual reports.
+
+Use example can be found in the code below, and in the tutorial folder. 
+
 ## Dataset
 DReAMy has direct access to two datasets. A smaller English-only (~ 20k), with more descriptive variables (such as gender and year), and a larger and multilingual one (En/De, ~ 30 k). You can easly choose between the two of them with the simple code below.
 
@@ -34,19 +42,12 @@ dream_bank.sample(2)
 ## Emotion Classification
 DReAMy comes equipped with a set of model tuned  to reproduce expert-annotators labels accoding to the [Hall & Van de Castle](https://dreams.ucsc.edu/Coding/) system. These models can perform emotion classification. (a.k.a. sentiment analysis) following 2 main patterns.
 ### Presence 
-Choose between two models:
-#### English-only (base)
-```py
-classification_type = "presence"
-model_type          = "base-en"
-```
-#### Multilingual (large)
-```py
-classification_type = "presence"
-model_type          = "large-multi"
-```
-and run 
+Two model are currenlty available to detect the presence of difference emotions: `base-en` and `large-multi`, easly querible with the short code below.
 ```py 
+
+classification_type = "presence"
+model_type          =  "base-en" # large-multi
+
 return_all_scores   = True
 device              = "cpu"
 max_length          = 512
@@ -125,6 +126,31 @@ predictions
  {'summary_text': 'The dreamer experienced happiness and apprehension and happiness. The individual female known adult experienced sadness. the dreamer and the individual female uncertian adult experienced happiness'}]
 ```
 ## NER
+An important aspect of each dream report is the character that appear in it. In thi notebook, we will see how to use `dreamy` to extract character appearing in each report. As always, character are defined with respect to the Hall & Van de Castle system. CHAR are in this case spelled out, and do not/should not include the dreamer themself. Please note that CHAR data used in training is not linked to any specii feature. In other words, prediction should not be interpreted in any other way other than their presence. 
+```py 
+classification_type = "full"
+model_type          = "base-en"
+device              = "cpu"
+max_length          = 512
+truncation          = True
+device              = "cpu"
+model_name, task = dreamy.ner_model_maps[
+    "{}-{}".format(classification_type, model_type)
+]
+predictions = dreamy.get_CHAR(
+    dream_as_list, 
+    model_name, 
+    task,
+    max_length=max_length, 
+    truncation=truncation, 
+    device=device,
+)
+predictions
+```
+```
+[{'summary_text': 'individual male known adult; original form male uncertian adult; changed form female reative adult; new form male occupational adult; change in form male known child;'},
+ {'summary_text': 'Ich stehe in einer Halle vor ziemlich vielen Leuten und habe einen Vortrag gehalten. Ich sage es in englischer Sprache, aber ich spreche in deutscher Sprache.'}]
+```
 
 ## Encoding, reduction and visualisation
 You can also use DReAMy to easily extract, reduce, cluster, and visualise encodings (i.e., vector embeddings) of dream reports, with few and simple lines of codee. At the moment, you can chose betweem four model, that are combination of small/large Engish-ony/multilingual models.
