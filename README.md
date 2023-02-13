@@ -126,7 +126,7 @@ predictions
 ## NER
 
 ## Encoding, reduction and visualisation
-You can also use DReAMy to ealy extract, reduce and visualise encodings/embeddings of reports. In literally 2 lines of code. Note that the model used in this case a pre-trained `bert-base-cased`. You can change to model to other 🤗 models, but, at the current state, it might clash with the source code. 
+You can also use DReAMy to easily extract, reduce, cluster, and visualise encodings (i.e., vector embeddings) of dream reports, with few and simple lines of codee. At the moment, you can chose betweem four model, that are combination of small/large Engish-ony/multilingual models.
 
 ```py
 model_size = "small"   # or large
