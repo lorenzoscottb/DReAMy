@@ -12,11 +12,13 @@ pip install dreamy
 
 # Current Feature
 ## Dataset
-You can download and use a collection of (previously scraped) dreams from the DreamBank database (~29 k).
+DReAMy has direct access to two datasets. A smaller English-only (~ 20k), with more descriptive variables (such as gender and year), and a larger and multilingual one (En/De, ~ 30 k). You can easly choose between the two of them with the simple code below.
+
 ```py
 import dreamy
 
-dream_bank = dreamy.get_HF_DreamBank(as_dataframe=True)
+language   = "english" # choose between english/multi
+dream_bank = dreamy.get_HF_DreamBank(as_dataframe=True, language=language)
 
 n_samples     = 10
 dream_sample  = dream_bank.sample(n_samples, random_state=35).reset_index(drop=True)
@@ -24,10 +26,10 @@ dream_as_list = dream_sample["dreams"].tolist()
 
 dream_bank.sample(2)
 ```
-|index|dreams|series|description|
-|---|---|---|---|
-|8726|I was sitting on the porch in the sun\. It was cool and I was thinking how nice it would be if I could take off my shirt and take a sunbath\.|pegasus|Pegasus: a factory worker|
-|22410|I couldn't make the elevator work\. Had trouble first to bring it down and then even when I pressed three buttons, it didn't move\. Two men came to help\. Then I am walking along a slippery grass path on the high bank of a stream\. Then I cross a gravelly field thinking it's lucky I have on my old shoes\. I ask the woman with me how much further\. Is it to that new building over there? "Yes\." As we approach I see indications that the field is being prepared for a lawn\.|dorothea|Dorothea: 53 years of dreams|
+|index|series|description|dreams|gender|year|
+|---|---|---|---|---|---|
+|5875|blind-f|Blind dreamers \(F\)|I'm at work in the office of a rehab teacher named D, a transistor radio is on, I held it in my hand and placed it on my desk\. They were talking about a thousand dollar contest you could win if you listen use UPS, but they're calling it a 'star program'\. D said that she was already entered and was hoping to won the prize\. I hadn't entered yet but I thought to myself that I was hoping that it wasn't too late to do that\.|female|mid-1990s|
+|12888|emma|Emma: 48 years of dreams|I go to Pedro's house, he is fixing his bike\. I think I will take my bike out too, but I can't remember the lock combination\. I turn it various ways, but it won't open\. Pedro goes on and I ask "How much time?" he says: "Oh, lots of time\." Then we can do everything\. Later we ride with someone and he \(who?\) kisses me on the mouth, very sexy\.I am in a restaurant and eating scrambled eggs and I wait for Pedro to arrive; it looks like Vienna\!|female|1949-1997|
 
 ## Emotion Classification
 DReAMy comes equipped with a set of model tuned  to reproduce expert-annotators labels accoding to the [Hall & Van de Castle](https://dreams.ucsc.edu/Coding/) system. These models can perform emotion classification. (a.k.a. sentiment analysis) following 2 main patterns.
