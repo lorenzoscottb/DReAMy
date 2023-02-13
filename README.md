@@ -120,8 +120,7 @@ predictions
 ```
 ```
 [{'summary_text': 'the dreamer experienced sadness. the individual male father adult experienced apprehension . the group indefinite known adult experienced sadness .'},
- {'summary_text': 'The dreamer experienced happiness and apprehension and happiness. The individual female known adult experienced sadness. the dreamer and the individual female uncertian adult experienced happiness'},
- {'summary_text': 'The dreamer experienced apprehension and confusion . the individual male known teenager experienced happiness. the group joint uncertian teenager experienced sadness.'}]
+ {'summary_text': 'The dreamer experienced happiness and apprehension and happiness. The individual female known adult experienced sadness. the dreamer and the individual female uncertian adult experienced happiness'}]
 ```
 ## NER
 
