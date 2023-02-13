@@ -25,3 +25,15 @@ def reduce_space(embeddings ,method="pca", n_components=2):
 		return None
 
 	return X, Y
+
+
+def get_KMeans(embeddings, n_clusters, random_state=31):
+
+	from sklearn.cluster import KMeans
+
+	kmeans = KMeans(n_clusters, random_state=random_state).fit(embeddings)
+	kmen_labels = kmeans.labels_
+
+	return kmen_labels
+
+    
