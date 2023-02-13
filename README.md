@@ -1,11 +1,11 @@
-![alt text](https://github.com/lorenzoscottb/DReAMy/blob/main/images/dreamy_full_logo.png)
 
 
-DReAMy is a python library using machine learning and state-of-the-art NLP methods to explore, analyse and annotate dream-reports. The library is mainly built around pytorch and Hugging Face's 🤗 [`transformers`](https://huggingface.co/docs/transformers/index), and makes use of large language models (LLMs) tuned to perform different dream-report-specific tasks, such as sentiment analysis and character recognition (NER). As of now, the input format is only textual and the annotation process is based on the [Hall & Van de Castle](https://link.springer.com/chapter/10.1007/978-1-4899-0298-6_2) framework. We are looking forward to expanding our set applications and annotation schemes, so please do get in touch if you wish to take part in the expansion of DReAMy!
+![dreamy_logo](.images/dreamy_full_logo.png)
+
+DReAMy is a python library built around pytorch and Hugging Face's 🤗 [`transformers`](https://huggingface.co/docs/transformers/index) to automatically analyse (for now) textual reports of dream. At the moment, annotations are based on the [Hall & Van de Castle](https://link.springer.com/chapter/10.1007/978-1-4899-0298-6_2) emotions framewokr, but we are looking forward to expand our set applications. 
 
 # Installation and usage
-DReAMy can be easly installed via pip! If you wish to play/query a set of DReAMy's model, you can do so in the [`dream`](https://huggingface.co/spaces/DReAMy-lib/dream) 🤗 Space. Before starting, we do reccoment setting up a virtual envirment (`conda` or `venv`), using python 3.9. 
-
+DReAMy can be easly installed via pip! If you wish to play/query a set of DReAMy's model, you can do so in the [`dream`](https://huggingface.co/spaces/DReAMy-lib/dream) 🤗 Space.
 ```
 pip install dreamy
 ```
@@ -51,7 +51,7 @@ max_length          = 512
 truncation          = True
 device              = "cpu"
 
-model_name, task = dreamy.emotion_classification.emotion_model_maps[
+model_name, task = dreamy.emotion_classification.model_maps[
     "{}-{}".format(classification_type, model_type)
 ]
 
@@ -103,9 +103,10 @@ max_length          = 512
 truncation          = True
 device              = "cpu"
 
-model_name, task = dreamy.emotion_classification.emotion_model_maps[
+model_name, task = dreamy.emotion_classification.model_maps[
     "{}-{}".format(classification_type, model_type)
 ]
+
 predictions = dreamy.generate_emotions(
     dream_as_list, 
     model_name, 
@@ -123,40 +124,22 @@ predictions
  {'summary_text': 'The dreamer experienced apprehension and confusion . the individual male known teenager experienced happiness. the group joint uncertian teenager experienced sadness.'}]
 ```
 ## NER
-An important aspect of each dream report is the character that appear in it. In thi notebook, we will see how to use `dreamy` to extract character appearing in each report. As always, character are defined with respect to the Hall & Van de Castle system. CHAR are in this case spelled out, and do not/should not include the dreamer themself. Please note that CHAR data used in training is not linked to any specii feature. In other words, prediction should not be interpreted in any other way other than their presence. 
-```py 
-classification_type = "full"
-model_type          = "base-en"
-device              = "cpu"
-max_length          = 512
-truncation          = True
-device              = "cpu"
 
-
-model_name, task = dreamy.ner_model_maps[
-    "{}-{}".format(classification_type, model_type)
-]
-
-predictions = dreamy.get_CHAR(
-    dream_as_list, 
-    model_name, 
-    task,
-    max_length=max_length, 
-    truncation=truncation, 
-    device=device,
-)
-
-predictions
-```
-```
-[{'summary_text': 'individual male known adult; original form male uncertian adult; changed form female reative adult; new form male occupational adult; change in form male known child;'},
- {'summary_text': 'Ich stehe in einer Halle vor ziemlich vielen Leuten und habe einen Vortrag gehalten. Ich sage es in englischer Sprache, aber ich spreche in deutscher Sprache.'}]
-```
 ## Encoding, reduction and visualisation
 You can also use DReAMy to ealy extract, reduce and visualise encodings/embeddings of reports. In literally 2 lines of code. Note that the model used in this case a pre-trained `bert-base-cased`. You can change to model to other 🤗 models, but, at the current state, it might clash with the source code. 
 
 ```py
-report_encodings = dreamy.get_encodings(dream_as_list)
+model_size = "small"   # or large
+model_lang = "english" # or multi, for multilingual
+device     = "cpu"     # if available, select "cuda" to use GPUs
+
+report_encodings = dreamy.get_encodings(
+    dream_list, 
+    model_size=model_size,
+    language=model_lang, 
+    device=device,
+)
+
 X, Y = dreamy.reduce_space(report_encodings, method="pca") # choose between pca/t-sne
 
 # Update your original dataframe with cohordinates and plot
