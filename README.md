@@ -189,3 +189,17 @@ Check the starting tutorial for more, like unuspervised K-Mean clustering.
 ## Contribute
 
 ## Cite 
+If you use DReAMy, please cite the pre-print
+```bibtex
+@misc{https://doi.org/10.48550/arxiv.2302.14828,
+  doi = {10.48550/ARXIV.2302.14828},
+  url = {https://arxiv.org/abs/2302.14828},
+  author = {Bertolini, Lorenzo and Elce, Valentina and Michalak, Adriana and Bernardi, Giulio and Weeds, Julie},
+  keywords = {Computation and Language (cs.CL), FOS: Computer and information sciences, FOS: Computer and information sciences},
+  title = {Automatic Scoring of Dream Reports' Emotional Content with Large Language Models},
+  publisher = {arXiv},
+  year = {2023},
+  copyright = {Creative Commons Attribution 4.0 International}
+}
+
+```
