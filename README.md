@@ -187,6 +187,7 @@ Check the starting tutorial for more, like unuspervised K-Mean clustering.
 ### EEG interface
 
 ## Contribute
+If you wish to contribute, collaborate, or just ask question, feel free to contact [Lorenzo](https://lorenzoscottb.github.io/), or use the issue section.
 
 ## Cite 
 If you use DReAMy, please cite the pre-print
