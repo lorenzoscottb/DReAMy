@@ -1,5 +1,6 @@
 
 import torch
+from torch.utils.data import DataLoader
 
 
 ####################################################################
@@ -126,3 +127,4 @@ def get_collection_Fold(final_df_dataset, collection, tokenizer, train_batch_siz
     testing_loader  = DataLoader(testing_set, **test_params)
     
     return training_loader, testing_loader
+

@@ -10,7 +10,6 @@ _encoodings_models_map = {
     "large-multi": "xlm-roberta-large",
 }
 
-
 def _extrac_CLS(sq, tokenizer, model, device="cpu", max_len=512, idx=0, layer=-1, truncate=True, padding=True):
 
     """""

@@ -3,10 +3,7 @@ author_ = "lb540"
 
 import random
 import numpy as np
-import pandas as pd
 import torch
-from tqdm import tqdm 
-from torch.utils.data import Dataset, DataLoader, RandomSampler, SequentialSampler
 import transformers 
 
 def set_seed(seed: int, set_random=True):
@@ -34,8 +31,11 @@ def decode_clean(x, tokenizer):
     s = tokenizer.decode(x).replace("[PAD]", "").replace("[CLS]", "").replace("[SEP]", "")
     return s
 
+def decode_clean_T5(x, tokenizer):
+    s = tokenizer.decode(x).replace("<pad> ", "").replace("</s>", "").replace("<pad>", "")
+    return s
 
-def preprocess_function(examples, tokenizer, ssource_clm, target_clm, prefix="", max_source_length=512, max_target_length=128):
+def preprocess_function(examples, tokenizer, source_clm, target_clm, prefix="", max_source_length=512, max_target_length=128):
     inputs = [prefix + doc for doc in examples[source_clm]]
     model_inputs = tokenizer(inputs, max_length=max_source_length, truncation=True)
 
