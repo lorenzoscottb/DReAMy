@@ -2,25 +2,25 @@
 
 ![dreamy_logo](images/dreamy_full_logo.png)
 
-DReAMy is a python library built around pytorch and Hugging Face's 🤗 [`transformers`](https://huggingface.co/docs/transformers/index) to automatically analyse (for now only) textual dream reports. At the moment, annotations are based on the [Hall & Van de Castle](https://link.springer.com/chapter/10.1007/978-1-4899-0298-6_2) emotions framewokr, but we are looking forward to expand our set applications. The theretical backbone of DReAMy and its model is based on a fuiifull collaboration betweem NLP and sleep research. More detailed results can be found [here](https://github.com/lorenzoscottb/Dream_Reports_Annotation).
+DReAMy is a python library built around pytorch and Hugging Face's 🤗 [`transformers`](https://huggingface.co/docs/transformers/index) to automatically analyse (for now only) textual dream reports. At the moment, annotations are based on the [Hall & Van de Castle](https://link.springer.com/chapter/10.1007/978-1-4899-0298-6_2) emotions framework, but we are looking forward to expand our set applications. The theoretical backbone of DReAMy and its model is based on a fuiifull collaboration between NLP and sleep research. More detailed results can be found [here](https://github.com/lorenzoscottb/Dream_Reports_Annotation).
 
 # Installation and usage
-DReAMy can be easly installed via pip! If you wish to play/query a set of DReAMy's model, you can do so in the [`dream`](https://huggingface.co/spaces/DReAMy-lib/dream) 🤗 Space.
+DReAMy can be easily installed via pip! If you wish to play/query a set of DReAMy's model, you can do so in the [`dream`](https://huggingface.co/spaces/DReAMy-lib/dream) 🤗 Space.
 ```
 pip install dreamy
 ```
 
 # Current Features
 At the moment, DReAMy has four main features: 
-- Datasts, allowing to download and use two dream-report datasets from DreamBank.
-- Emotion Classification, allowing to easly classify lists of reports for HVDC emotions.
+- Datasets, allowing to download and use two dream-report datasets from DreamBank.
+- Emotion Classification, allowing to easily classify lists of reports for HVDC emotions.
 - NER (or character annotation), that allow to extract relevant characters appearing in a given report. 
-- Encodigns: that easly collects and explores enbeddings of textual reports.
+- Encodings: that easily collects and explores embeddings of textual reports.
 
 Use example can be found in the code below, and in the tutorial folder. 
 
 ## Dataset
-DReAMy has direct access to two datasets. A smaller English-only (~ 20k), with more descriptive variables (such as gender and year), and a larger and multilingual one (En/De, ~ 30 k). You can easly choose between the two of them with the simple code below.
+DReAMy has direct access to two datasets. A smaller English-only (~ 20k), with more descriptive variables (such as gender and year), and a larger and multilingual one (En/De, ~ 30 k). You can easily choose between the two of them with the simple code below.
 
 ```py
 import dreamy
@@ -42,7 +42,7 @@ dream_bank.sample(2)
 ## Emotion Classification
 DReAMy comes equipped with a set of model tuned  to reproduce expert-annotators labels accoding to the [Hall & Van de Castle](https://dreams.ucsc.edu/Coding/) system. These models can perform emotion classification. (a.k.a. sentiment analysis) following 2 main patterns.
 ### Presence 
-Two model are currenlty available to detect the presence of difference emotions: `base-en` and `large-multi`, easly querible with the short code below.
+Two model are currently available to detect the presence of difference emotions: `base-en` and `large-multi`, easily querible with the short code below.
 ```py 
 classification_type = "presence"
 model_type          = "base-en"
@@ -83,7 +83,7 @@ dreamy.Coding_emotions
  'HA': 'happiness'}
 ```
 #### Generation
-Under this variance, a T5 model is trained with the same data to generate the emotion-based reports, with two extra feature. First, the emotion are "numbered". This refers to the fact that if the same emotion was found more than once in the same report, the model should be able to identify so. Second, the model is also trained to recognise *to which character* the emotion are associated with. See the examples below.
+Under this variance, a T5 model is trained with the same data to generate the emotion-based reports, with two extra feature. First, the emotion are "numbered". This refers to the fact that if the same emotion was found more than once in the same report, the model should be able to identify so. Second, the model is also trained to recognize *to which character* the emotion are associated with. See the examples below.
 ##### English-only, characters + numbered emotions
 ```py 
 classification_type = "generation"
@@ -104,7 +104,7 @@ predictions
  'The group joint stranger adult experienced happiness. The dreamer experienced anger.',]
 ```
 ## NER
-An important aspect of each dream report is the character that appear in it. In thi notebook, we will see how to use `dreamy` to extract character appearing in each report. As always, character are defined with respect to the Hall & Van de Castle system. CHAR are in this case spelled out, and do not/should not include the dreamer themself. Please note that CHAR data used in training is not linked to any specii feature. In other words, prediction should not be interpreted in any other way other than their presence. 
+An important aspect of each dream report is the character that appear in it. In this notebook, we will see how to use `dreamy` to extract character appearing in each report. As always, character are defined with respect to the Hall & Van de Castle system. CHAR are in this case spelled out, and do not/should not include the dreamer themself. Please note that CHAR data used in training is not linked to any specii feature. In other words, prediction should not be interpreted in any other way other than their presence. 
 ```py 
 classification_type = "full"
 model_type          = "base-en"
@@ -125,7 +125,7 @@ predictions
 ```
 
 ## Encoding, reduction and visualisation
-You can also use DReAMy to easily extract, reduce, cluster, and visualise encodings (i.e., vector embeddings) of dream reports, with few and simple lines of codee. At the moment, you can chose betweem four model, that are combination of small/large Engish-ony/multilingual models.
+You can also use DReAMy to easily extract, reduce, cluster, and visualize encodings (i.e., vector embeddings) of dream reports, with few and simple lines of codee. At the moment, you can chose betweem four model, that are combination of small/large English-ony/multilingual models.
 
 ```py
 import dreamy
