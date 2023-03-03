@@ -1,28 +1,25 @@
 
-from ..util.util import decode_clean
-from ..data import Dataset
-from ..util.util import preprocess_function
-
-from datasets import Dataset
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
-from transformers import DataCollatorForSeq2Seq, Seq2SeqTrainingArguments, Seq2SeqTrainer
+from .models_names import _emotion_model_maps
+from ..util.util import decode_clean_T5
 
 
-def generate_emotions(data, model_name, task, max_length=512, truncation=True, device="cpu"):
+def generate_emotions(data, classification_type, model_type, max_length=512, max_new_token=128, truncation=True, device="cpu"):
 
-    from transformers import pipeline
+    from transformers import pipeline, AutoTokenizer, AutoModelForSeq2SeqLM, AutoConfig
+    
+    local_model_map  = "{}-{}".format(classification_type, model_type)
+    model_name, task = _emotion_model_maps[local_model_map]
+ 
+    model     = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
 
-    pipe = pipeline(
-        task,
-        model=model_name,
-        tokenizer=model_name, 
-        max_length=max_length, 
-        truncation=truncation,
-        device=device,
-    )
+    if local_model_map not in _emotion_model_maps.keys():
+        print("Sorry, no model for such method")
+        return None
 
-    predictions = pipe(data)
+    else:
+        inputs = tokenizer(data, max_length=max_length, padding=True, truncation=truncation, return_tensors="pt")
+        generation_output = model.generate(**inputs, max_new_tokens=max_new_token)
+        predictions = [decode_clean_T5(inpt, tokenizer) for inpt in generation_output]
 
     return predictions
-
-
