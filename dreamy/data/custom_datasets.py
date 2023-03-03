@@ -1,17 +1,14 @@
-import random
-import numpy as np
-import pandas as pd
+
 import torch
-from tqdm import tqdm 
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import Dataset
 
-
-class Dataset(Dataset):
+class Custom_Dataset(Dataset):
 
     def __init__(self, dataframe, tokenizer, max_length=512):
         self.tokenizer = tokenizer                      # the Tokenizer model
         self.data      = dataframe                      # the full dataset
         self.report    = dataframe.report               # the text data (i.e., the reports)
+        self.targets   = self.data.Report_as_Multilabel # labels' list to classify
         self.max_len   = max_length                     # max length fro truncation
 
     def __len__(self):
@@ -37,6 +34,7 @@ class Dataset(Dataset):
             'ids': torch.tensor(ids, dtype=torch.long),
             'mask': torch.tensor(mask, dtype=torch.long),
             'token_type_ids': torch.tensor(token_type_ids, dtype=torch.long),
+            'targets': torch.tensor(self.targets[index], dtype=torch.float)
         }
 
 class Train_Dataset(Dataset):
@@ -73,4 +71,4 @@ class Train_Dataset(Dataset):
             'token_type_ids': torch.tensor(token_type_ids, dtype=torch.long),
             'targets': torch.tensor(self.targets[index], dtype=torch.float)
         }
-    
+        
