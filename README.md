@@ -1,3 +1,5 @@
+
+
 ![dreamy_logo](images/dreamy_full_logo.png)
 
 DReAMy is a python library to automatically analyse (for now only) textual dream reports. At the moment, annotations are exclusively based on the [Hall & Van de Castle](https://link.springer.com/chapter/10.1007/978-1-4899-0298-6_2) emotions framework, but we are looking forward to expanding our set applications. As for the theoretical backbone, DReAMy and its model are based on a fruitful collaboration between NLP and sleep research. For more details, please refer to the [pre-print](https://arxiv.org/abs/2302.14828)
@@ -10,38 +12,35 @@ pip install dreamy
 
 # Current Features
 At the moment, DReAMy has four main features: 
-- Datasets, allowing to download and use of two dream-report datasets from DreamBank.
-- Emotion Classification, allowing easily classify lists of reports for HVDC emotions.
+- Dataset, allowing to download and use of two dream-report datasets from DreamBank.
+- Sentiment Analysis, allowing easily classify lists of reports for HVDC emotions.
 - NER (or character annotation), allowing the extraction of relevant characters appearing in a given report. 
 - Encodings: that easily collects and explores (contextualised) embeddings of textual reports.
 
 Usage examples can be found in the code below, and in the tutorial folder. 
 
 ## Dataset
-DReAMy has direct access to two datasets. A smaller English-only (~ 20k), with more descriptive variables (such as gender and year), and a larger and multilingual one (En/De, ~ 30k). You can easily choose which to download using the simple code below.
-
+DReAMy has direct access to two datasets. A smaller English-only (~ 20k), with more descriptive variables (such as gender and year of collection), and a larger one (~ 30k), with reports both in english and german. You can download them using the simple code below.
 ```py
 import dreamy
 
 language   = "english" # choose between english/multi
 dream_bank = dreamy.get_HF_DreamBank(as_dataframe=True, language=language)
 
-n_samples     = 10
-dream_sample  = dream_bank.sample(n_samples, random_state=35).reset_index(drop=True)
 dream_as_list = dream_sample["dreams"].tolist()
 
 dream_bank.sample(2)
 ```
 |index|series|description|dreams|gender|year|
 |---|---|---|---|---|---|
-|5875|blind-f|Blind dreamers \(F\)|I'm at work in the office of a rehab teacher named D, a transistor radio is on, I held it in my hand and placed it on my desk\. They were talking about a thousand dollar contest you could win if you listen use UPS, but they're calling it a 'star program'\. D said that she was already entered and was hoping to won the prize\. I hadn't entered yet but I thought to myself that I was hoping that it wasn't too late to do that\.|female|mid-1990s|
-|12888|emma|Emma: 48 years of dreams|I go to Pedro's house, he is fixing his bike\. I think I will take my bike out too, but I can't remember the lock combination\. I turn it various ways, but it won't open\. Pedro goes on and I ask "How much time?" he says: "Oh, lots of time\." Then we can do everything\. Later we ride with someone and he \(who?\) kisses me on the mouth, very sexy\.I am in a restaurant and eating scrambled eggs and I wait for Pedro to arrive; it looks like Vienna\!|female|1949-1997|
+|5875|blind-f|Blind dreamers \(F\)|I'm at work in the office of a rehab teacher named D, a transistor radio is on, [...]\.|female|mid-1990s|
+|12888|emma|Emma: 48 years of dreams|I go to Pedro's house, he is fixing his bike\. I think I will take my bike out too[...]\!|female|1949-1997|
 
-## Emotion Classification
-DReAMy comes equipped with a set of models tuned to reproduce expert-annotators labels according to the [Hall & Van de Castle](https://dreams.ucsc.edu/Coding/) system. These models can perform emotion classification. (a.k.a. sentiment analysis) in two main formats: presence and generation.
+## Sentiment Analsyis (SA)
+The sentiment analysis methods allow you to annotate a set of reports with respect to the emotion feature of the [Hall & Van de Castle](https://dreams.ucsc.edu/Coding/) scoring system. At the moment, DReAMy has two formats of SA: multi-label classification, and generation.
 
-### Presence 
-Two models are currently available to detect the presence of different emotions: `base-en` and `large-multi`.
+### Multi-Label Classification  
+As suggested by the name, MLC models are tuned to classify a report in terems of (the probability of the) ptesence of each HVDC emotion (i.e., anger, apprehension, sadness, confusion, happiness). You can choose between two mlc LLMs at the moment: `base-en` and `large-multi` (a XLM-R-large). The code below showcase how to use the `.predict_emotions` method to annotate a list of reports.
 ```py 
 classification_type = "presence"
 model_type          = "base-en"
@@ -70,7 +69,7 @@ predictions
   {'label': 'CO', 'score': 0.024184534326195717},
   {'label': 'AN', 'score': 0.023663492873311043}]
 ```
-You can get the HVDC decodings via 
+To decode each label's acronim, you can call a HVDC conversion table with 
 ```py
 dreamy.Coding_emotions
 ```
@@ -81,10 +80,8 @@ dreamy.Coding_emotions
  'CO': 'confusion',
  'HA': 'happiness'}
 ```
-#### Generation
-Under this format, a `T5-base` model is trained with the same data to generate emotion-based reports, with two extra features. First, the emotions are "numbered". This refers to the fact that if the same emotion was found more than once in the same report, the model should be able to identify so. Second, the model is also trained to recognise *to which character* the emotions are associated with. See the examples below.
-
-##### English-only, characters + numbered emotions
+### Generation
+Pretty straightforwardly, under this format, an LLM (`T5-base`) was tuned to generate emotion-based reports. The main model offerst two extra feature with respect to both MLC models. First, the emotions are "numbered". That is, if the same emotion was found more than once in the same report, the model should be able to identify so. Second, the model is also trained to recognise *to which character* the emotions are associated with. See the examples below.
 ```py 
 classification_type = "generation"
 model_type          = "char-en"
@@ -126,7 +123,6 @@ predictions
 
 ## Encoding, reduction and visualisation
 You can also use DReAMy to easily extract, reduce, cluster, and visualise (contextualised) encodings (i.e., vector embeddings) of dream reports, with few and simple lines of code. At the moment, you can choose between four models, which are combinations of small/large English-only/multilingual models.
-
 ```py
 import dreamy
 
@@ -158,9 +154,8 @@ X, Y = dreamy.reduce_space(report_encodings, method="pca")
 # Update your original dataframe with cohordinates and plot
 dream_bank["DR_X"], dream_bank["DR_Y"] = X, Y
 ```
-Then use your favourite visualisation library to explore the results.
+You can then use your favourite library to visualise the results. In this case, I will adopt `seabonr`.
 ```py
-
 import seaborn as sns
 
 sns.set_context("talk")
@@ -174,17 +169,18 @@ g = sns.scatterplot(
     palette="Set2"
 )
 g.legend(loc='center left', title="DreamBank Series", bbox_to_anchor=(1, 0.5))
-
 ```
-Check the starting tutorial for more, like unuspervised K-Mean clustering.
 ![alt text](https://github.com/lorenzoscottb/DReAMy/blob/main/images/dreamy_example.png)
 
-## In-Progress Development
-### Audio-to-Text pipeline
+Please refer to the tutorial(s) for more infomation and detials. 
 
-## Planned Development
-### EEG interface
-### Topic-Modelling
+# In-Progress Development
+## Audio-to-Text pipeline
+
+# Planned Development
+## EEG interface
+## Topic-Modelling
+
 ## Contribute
 If you wish to contribute, collaborate, or just ask question, feel free to contact [Lorenzo](https://lorenzoscottb.github.io/), or use the issue section.
 
@@ -201,5 +197,4 @@ If you use DReAMy, please cite the pre-print
   year = {2023},
   copyright = {Creative Commons Attribution 4.0 International}
 }
-
 ```
