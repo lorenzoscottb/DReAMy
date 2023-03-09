@@ -175,11 +175,11 @@ g.legend(loc='center left', title="DreamBank Series", bbox_to_anchor=(1, 0.5))
 Please refer to the tutorial(s) for more infomation and detials. 
 
 # In-Progress Development
-## Audio-to-Text pipeline
+ - Audio-to-Text pipeline
 
 # Planned Development
-## EEG interface
-## Topic-Modelling
+ - EEG interface
+ - Topic-Modelling
 
 ## Contribute
 If you wish to contribute, collaborate, or just ask question, feel free to contact [Lorenzo](https://lorenzoscottb.github.io/), or use the issue section.
