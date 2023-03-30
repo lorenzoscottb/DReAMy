@@ -27,7 +27,7 @@ import dreamy
 language   = "english" # choose between english/multi
 dream_bank = dreamy.get_HF_DreamBank(as_dataframe=True, language=language)
 
-dream_as_list = dream_sample["dreams"].tolist()
+dream_as_list = dream_bank["dreams"].tolist()
 
 dream_bank.sample(2)
 ```
