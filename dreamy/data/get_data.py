@@ -5,19 +5,17 @@ import pandas as pd
 DB_dreams_HF_full = "DReAMy-lib/DreamBank-dreams"
 DB_dreams_HF_en   = "DReAMy-lib/DreamBank-dreams-en"
 
-datasets_dict ={
-	"english": DB_dreams_HF_en, 
-	"multi": DB_dreams_HF_full
-
+datasets_dict = {
+	"base": DB_dreams_HF_en, 
+	"large":   DB_dreams_HF_full
 }
 
-def get_HF_DreamBank(language="english", as_dataframe=True):
+def get_HF_DreamBank(database="base", as_dataframe=True):
 	
-	DB_dreams_name = datasets_dict[language]
-
+	DB_dreams_name = datasets_dict[database]
+	data 		   = load_dataset(DB_dreams_name)
+	
 	if as_dataframe:
-		data = pd.DataFrame(load_dataset(DB_dreams_name)["train"])
+		data = pd.DataFrame(data["train"])
 		
-	else:
-		data = load_dataset(DB_dreams_name)
 	return data
