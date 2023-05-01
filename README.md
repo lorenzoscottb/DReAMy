@@ -2,7 +2,9 @@
 
 ![dreamy_logo](images/dreamy_full_logo_2.png)
 
-DReAMy is a python library to automatically analyse (for now only) textual dream reports. At the moment, annotations are exclusively based on different [Hall & Van de Castle](https://link.springer.com/chapter/10.1007/978-1-4899-0298-6_2) features, but we are looking forward to expanding our set. For more details on the theretcal aspect, please refer to the [pre-print](https://arxiv.org/abs/2302.14828).
+DReAMy is a python library to automatically analyse (for now only) textual dream reports. At the moment, annotations are based on different [Hall & Van de Castle](https://link.springer.com/chapter/10.1007/978-1-4899-0298-6_2) features (e.g., character, emotions), but we are looking forward to expanding DReAMy's capabilities.  For more details on the theoretical aspect, please refer to the [pre-print](https://arxiv.org/abs/2302.14828). You can also follow us on [Twitter](https://twitter.com/DreamyLib), to keep up with updates and relevant work!
+
+For more details on the theretcal aspect, please refer to the .
 
 # Installation and usage
 DReAMy can be easily installed via pip, and we do recommend using a virtual environment with python 3.9 or 3.10 installed. If you wish to play/query DReAMy's model, you can do so using the 🤗 Space [`DReAM`](https://huggingface.co/spaces/DReAMy-lib/dream).
@@ -42,7 +44,7 @@ You can also use DReAMy to easily extract, reduce, cluster, and visualise (conte
 ```py
 import dreamy
 
-# Gest some data in a list form
+# Get some data in a list form
 list_of_reports = dream_bank["dreams"].tolist()
 
 # set up model and  get encodings
