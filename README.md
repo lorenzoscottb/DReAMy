@@ -97,7 +97,7 @@ All the task are handelled via the main `annotate_reports` method, and can be ca
 ```py
 task        = "SA"
 batch_size = 16
-device     = "cpu"  # "cpu" for loca/cpu, "cuda" or device number (e.g., 0) for GPU
+device     = "cpu"  # or "cuda" / device number (e.g., 0) for GPU
 
 SA_predictions = dreamy.annotate_reports(
     list_of_reports, 
