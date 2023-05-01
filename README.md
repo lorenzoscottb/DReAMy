@@ -42,14 +42,8 @@ You can also use DReAMy to easily extract, reduce, cluster, and visualise (conte
 ```py
 import dreamy
 
-# get some data
-n_samples  = 10
-language   = "english" # choose between english/multi
-
-dream_bank = dreamy.get_HF_DreamBank(as_dataframe=True, language=language)
-dream_bank = dream_bank.sample(n_samples).reset_index(drop=True)
-
-list_of_reports = dream_sample["dreams"].tolist()
+# Gest some data in a list form
+list_of_reports = dream_bank["dreams"].tolist()
 
 # set up model and  get encodings
 model_size = "small"   # or large
