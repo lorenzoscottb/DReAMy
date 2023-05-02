@@ -15,9 +15,9 @@ pip install dreamy
 
 # Current Features
 At the moment, DReAMy has three main features: 
-- Data, allowing to download and use of two datasets containing dream reports from DreamBank.
-- Analyse, allowing you to collect (contextualised) embeddings, reduce the dimensionality of the reports' space, and run a clustering algorithm.
-- Annotate, which labels dream reports following different HVDC features, and is further divided into name entity recognition, sentiment analysis, and relation extraction.
+- Data: download datasets, containing dream reports from DreamBank.
+- Analyse: collect (contextualised) embeddings, dimensionality reduction, clustering. ([Colab tutorial](https://drive.google.com/file/d/1wqRv18C5d9yNo6IXL-EB6OEqWmv5qYSF/view?usp=sharing))
+- Annotate: label dream reports following different HVDC features, using one of three tasks – entity recognition, sentiment analysis, and relation extraction. ([Colab tutorial](https://drive.google.com/file/d/1USNfEy0VmOYxH8sDIItEVbS816XX8Zvh/view?usp=sharing))
 
 Usage examples of all features can be found in the code below, and in the tutorials in the dedicated folder. 
 
@@ -38,7 +38,7 @@ dream_bank.sample(2)
 |5875|blind-f|Blind dreamers \(F\)|I'm at work in the office of a rehab teacher named D, a transistor radio is on, I held it in my hand and placed it on my desk\. [...]\.|female|mid-1990s|
 |12888|emma|Emma: 48 years of dreams|I go to Pedro's house, he is fixing his bike\. [...]|female|1949-1997|
 
-## Analysis
+## Analyse
 You can also use DReAMy to easily extract, reduce, cluster, and visualise (contextualised) encodings (i.e., vector embeddings) of dream reports, with few and simple lines of code. At the moment, you can choose between four models, which are combinations of small/large English-only/Multilingual models.
 
 ```py
