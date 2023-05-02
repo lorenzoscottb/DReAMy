@@ -66,23 +66,7 @@ X, Y = dreamy.reduce_space(report_encodings, method="pca")
 # Update your original dataframe with cohordinates and plot
 dream_bank["DR_X"], dream_bank["DR_Y"] = X, Y
 ```
-You can then use your favourite library to visualise the results. In this case, I will adopt `seabonr`.
-```py
-import seaborn as sns
-
-sns.set_context("talk")
-sns.set_style("whitegrid")
-
-g = sns.scatterplot(
-    data=dream_sample, 
-    x="DR_X", 
-    y="DR_Y", 
-    hue="series",
-    palette="Set2"
-)
-g.legend(loc='center left', title="DreamBank Series", bbox_to_anchor=(1, 0.5))
-```
-![alt text](https://github.com/lorenzoscottb/DReAMy/blob/main/images/dreamy_example.png)
+You can then use your favourite library to visualise the results.
 
 ## Annotate
 
