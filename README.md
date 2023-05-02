@@ -16,8 +16,8 @@ pip install dreamy
 # Current Features
 At the moment, DReAMy has three main features: 
 - Data: download datasets, containing dream reports from DreamBank.
-- Analyse: collect (contextualised) embeddings, dimensionality reduction, clustering. ([Colab tutorial](https://drive.google.com/file/d/1wqRv18C5d9yNo6IXL-EB6OEqWmv5qYSF/view?usp=sharing))
-- Annotate: label dream reports following different HVDC features, using one of three tasks – entity recognition, sentiment analysis, and relation extraction. ([Colab tutorial](https://drive.google.com/file/d/1USNfEy0VmOYxH8sDIItEVbS816XX8Zvh/view?usp=sharing))
+- Analyse: collect (contextualised) embeddings, dimensionality reduction, clustering. ([Colab tutorial](https://colab.research.google.com/drive/1wqRv18C5d9yNo6IXL-EB6OEqWmv5qYSF))
+- Annotate: label dream reports following different HVDC features, using one of three tasks – entity recognition, sentiment analysis, and relation extraction. ([Colab tutorial](https://colab.research.google.com/drive/1USNfEy0VmOYxH8sDIItEVbS816XX8Zvh))
 
 Usage examples of all features can be found in the code below, and in the tutorials in the dedicated folder. 
 
