@@ -4,7 +4,7 @@
 
 DReAMy is a python library to automatically analyse (for now only) textual dream reports. At the moment, annotations are based on different [Hall & Van de Castle](https://link.springer.com/chapter/10.1007/978-1-4899-0298-6_2) features (e.g., character, emotions), but we are looking forward to expanding DReAMy's capabilities.  For more details on the theoretical aspect, please refer to the [pre-print](https://arxiv.org/abs/2302.14828). You can also follow us on [Twitter](https://twitter.com/DreamyLib), to keep up with updates and relevant work!
 
-For more details on the theretcal aspect, please refer to the .
+For more details on the theoretical aspect, please refer to the.
 
 # Installation and usage
 DReAMy can be easily installed via pip, and we do recommend using a virtual environment with python 3.9 or 3.10 installed. If you wish to play/query DReAMy's model, you can do so using the 🤗 Space [`DReAM`](https://huggingface.co/spaces/DReAMy-lib/dream).
@@ -22,7 +22,7 @@ At the moment, DReAMy has three main features:
 Usage examples of all features can be found in the code below, and in the tutorials in the dedicated folder. 
 
 ## Data
-DReAMy has direct access to two datasets. A smaller English-only (~ 22k), with more descriptive variables (such as gender and year of collection), and a larger one (~ 30k), with reports both in english and german. You can download them using the simple code below.
+DReAMy has direct access to two datasets. A smaller English-only (~ 22k), with more descriptive variables (such as gender and year of collection), and a larger one (~ 30k), with reports both in English and German. You can download them using the simple code below.
 ```py
 import dreamy
 
@@ -63,14 +63,14 @@ report_encodings = dreamy.get_encodings(
 # you can choose between pca/t-sne
 X, Y = dreamy.reduce_space(report_encodings, method="pca") 
 
-# Update your original dataframe with cohordinates and plot
+# Update your original dataframe with coordinates and plot
 dream_bank["DR_X"], dream_bank["DR_Y"] = X, Y
 ```
 You can then use your favourite library to visualise the results.
 
 ## Annotate
 
-As mentioned, the Annotate features revolves around three tasks:
+As mentioned, the Annotate features revolve around three tasks:
 
 - NER : (name entity recognition) which annotates reports with respect to the character appearing in a report.
 
@@ -78,7 +78,7 @@ As mentioned, the Annotate features revolves around three tasks:
 
 - RE: (relation extraction), which extracts entities (characters) in a report and the relation between them. At the moment, the only RE task available refers to the activity feature of the HVDC framework.
 
-All the task are handelled via the main `annotate_reports` method, and can be called by simply changing the `task` argument. Check the dedicated tutorial for more.
+All the tasks are handled via the main `annotate_reports` method and can be called by simply changing the `task` argument. Check the dedicated tutorial for more.
 
 ```py
 task        = "SA"
@@ -103,7 +103,7 @@ SA_predictions
   {'label': 'AP', 'score': 0.006692806258797646}],
   ...
 ```
-Please refer to the tutorial(s) for more infomation and detials. 
+Please refer to the tutorial(s) for more information and details. 
 
 # In-Progress Development
 ## Audio-to-Text pipeline
@@ -113,9 +113,9 @@ Please refer to the tutorial(s) for more infomation and detials.
 ## Topic-Modelling
 
 ## Contribute
-If you wish to contribute, collaborate, or just ask question, feel free to contact [Lorenzo](https://lorenzoscottb.github.io/), or use the issue section.
+If you wish to contribute, collaborate, or just ask a question, feel free to contact [Lorenzo](https://lorenzoscottb.github.io/), or use the issue section.
 
-## Cite 
+## Cite & acknowledgements
 If you use DReAMy, please cite the work
 ```bibtex
 @misc{https://doi.org/10.48550/arxiv.2302.14828,
@@ -128,3 +128,5 @@ If you use DReAMy, please cite the work
   year = {2023},
   copyright = {Creative Commons Attribution 4.0 International}
 }
+
+DReAMy was supported by the Horizon 2020 project Humane AI (grant N° 952026)
