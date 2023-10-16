@@ -128,5 +128,5 @@ If you use DReAMy, please cite the work
   year = {2023},
   copyright = {Creative Commons Attribution 4.0 International}
 }
-
+```
 DReAMy was supported by the Horizon 2020 project Humane AI (grant N° 952026)
