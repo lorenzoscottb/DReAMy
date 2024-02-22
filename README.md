@@ -118,15 +118,17 @@ If you wish to contribute, collaborate, or just ask a question, feel free to con
 ## Cite & acknowledgements
 If you use DReAMy, please cite the work
 ```bibtex
-@misc{https://doi.org/10.48550/arxiv.2302.14828,
-  doi = {10.48550/ARXIV.2302.14828},
-  url = {https://arxiv.org/abs/2302.14828},
-  author = {Bertolini, Lorenzo and Elce, Valentina and Michalak, Adriana and Bernardi, Giulio and Weeds, Julie},
-  keywords = {Computation and Language (cs.CL), FOS: Computer and information sciences, FOS: Computer and information sciences},
-  title = {Automatic Scoring of Dream Reports' Emotional Content with Large Language Models},
-  publisher = {arXiv},
-  year = {2023},
-  copyright = {Creative Commons Attribution 4.0 International}
+@article{BERTOLINI2024406,
+title = {DReAMy: a library for the automatic analysis and annotation of dream reports with multilingual large language models},
+journal = {Sleep Medicine},
+volume = {115},
+pages = {406-407},
+year = {2024},
+note = {Abstracts from the 17th World Sleep Congress},
+issn = {1389-9457},
+doi = {https://doi.org/10.1016/j.sleep.2023.11.1092},
+url = {https://www.sciencedirect.com/science/article/pii/S1389945723015186},
+author = {L. Bertolini and A. Michalak and J. Weeds}
 }
 ```
 DReAMy was supported by the Horizon 2020 project Humane AI (grant N° 952026)
