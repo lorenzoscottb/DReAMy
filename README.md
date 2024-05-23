@@ -114,18 +114,11 @@ SA_predictions
 ```
 Please refer to the tutorial(s) for more information and details. 
 
-# In-Progress Development
-## Audio-to-Text pipeline
-
-# Planned Development
-## EEG interface
-## Topic-Modelling
-
 ## Contribute
 If you wish to contribute, collaborate, or just ask a question, feel free to contact [Lorenzo](https://lorenzoscottb.github.io/), or use the issue section.
 
 ## Cite & acknowledgements
-If you use DReAMy, please cite the work
+If you use DReAMy in your project or research, please cite the work as
 ```bibtex
 @article{BERTOLINI2024406,
 title = {DReAMy: a library for the automatic analysis and annotation of dream reports with multilingual large language models},
