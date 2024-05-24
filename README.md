@@ -70,7 +70,7 @@ You can then use your favourite library to visualise the results.
 ## Anonymize 
 Dream reports often contain personal information, such as references to family members, places, organisations. To hide this information you can use the `anonimise` function. This will use a multilingual name entity recognition model (that you can change at will) to find and replace tokens like "Amy", "Milano", or "Nike", with "PersonN", "LocationN", or "OrganisationN" --- where "N" is a number between 1 and the highest count for each type of entity, independently.
 ```py
-anon_dreams_list = dreamy.anonimise(list_of_reports, return_original=Falsa, batch_size=16)
+anon_dreams_list = dreamy.anonimise(list_of_reports, return_original=False, batch_size=16)
 
 anon_dreams_list[0]
 ```
