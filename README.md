@@ -2,7 +2,7 @@
 
 ![dreamy_logo](images/dreamy_full_logo_2.png)
 
-DReAMy is a toolkit to automatically analyse and annotate textual dream reports. the current annotation system is based on three of the [Hall & Van de Castle](https://link.springer.com/chapter/10.1007/978-1-4899-0298-6_2) features, namely Characters, Emotions, and Activities, but we are looking forward to expanding DReAMy's capabilities. For further technical and theoretical details, please refer to [Bertolini et al., CLPsych-WS 2024] paper(https://aclanthology.org/2024.clpsych-1.7/) and [Bertolini et al., 24 Sleep Medicine](https://www.sciencedirect.com/science/article/pii/S1389945723015186?via%3Dihub). You can also follow us on [Twitter](https://twitter.com/DreamyLib), to keep up with updates and relevant work!
+DReAMy is a toolkit to automatically analyse and annotate textual dream reports. the current annotation system is based on three of the [Hall & Van de Castle](https://link.springer.com/chapter/10.1007/978-1-4899-0298-6_2) features, namely Characters, Emotions, and Activities, but we are looking forward to expanding DReAMy's capabilities. For further technical and theoretical details, please refer to [Bertolini et al., 24 CLPsych-WS](https://aclanthology.org/2024.clpsych-1.7/) and [Bertolini et al., 24 Sleep Medicine](https://www.sciencedirect.com/science/article/pii/S1389945723015186?via%3Dihub). You can also follow us on [Twitter](https://twitter.com/DreamyLib), to keep up with updates and relevant work!
 
 # Installation and usage
 DReAMy can be easily installed via pip, and we do recommend using a virtual environment with python 3.9 or 3.10 installed. If you wish to play/query DReAMy's model, you can use the 🤗 Space [`DReAM`](https://huggingface.co/spaces/DReAMy-lib/dream).
